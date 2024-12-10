@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,68 +8,74 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Basic Reset */
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Body */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0 auto;
-            max-width: 1200px;
+            background-color: #121212;
+            color: #e0e0e0;
             padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            scroll-behavior: smooth; /* Smooth scrolling */
         }
 
-        /* Header */
         header {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #1f1f1f, #323232);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             position: relative;
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+            color: #00E5FF;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: fadeInTitle 1s forwards ease-out;
+        }
+
+        @keyframes fadeInTitle {
+            0% {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         header p {
             font-size: 1.2rem;
+            color: #a0a0a0;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: fadeInTitle 1.2s forwards ease-out;
         }
 
-        .header-buttons a {
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            margin: 0.5rem;
-            background-color: #555;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .header-buttons a:hover {
-            background-color: #777;
-        }
-
-        /* Profile Picture */
         .profile-pic {
-            position: absolute;
-            top: 50%;
-            right: 2rem;
-            transform: translateY(-50%);
             width: 190px;
-            height: 250px;
-            border: 2px solid #fff;
-            border-radius: 10px;
+            height: 190px;
+            border-radius: 50%;
+            margin: -30px 1.5rem 1.5rem; /* Adjusted to move the picture upward */
             overflow: hidden;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 3px solid #00E5FF;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+            animation: moveRight 1.5s forwards ease-out;
+            position: relative;
         }
 
         .profile-pic img {
@@ -77,140 +84,148 @@
             object-fit: cover;
         }
 
-        /* Contact Info */
+        @keyframes moveRight {
+            0% {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .header-buttons a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
+            margin: 0.5rem;
+            background: #333;
+            color: #00E5FF;
+            border: 1px solid #00E5FF;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .header-buttons a:hover {
+            background: #00E5FF;
+            color: #121212;
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.5);
+        }
+
         .contact-info {
-            margin-top: 1rem;
+            position: absolute;
+            bottom: 1rem;
+            right: 2rem;
+            color: #e0e0e0;
         }
 
         .contact-info a {
-            color: #fff;
+            color: #e0e0e0;
             text-decoration: none;
             display: block;
             margin: 0.3rem;
         }
 
         .contact-info a:hover {
-            color: #f4f4f4;
+            color: #00E5FF;
         }
 
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* About Section */
-        #about, #certifications, #projects, #resume, #contact {
+        section {
+            background: #1f1f1f;
             padding: 2rem;
             margin: 2rem 0;
-            background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        #about h2, #certifications h2, #projects h2, #resume h2, #contact h2 {
+        section:hover {
+            transform: translateY(-10px);
+            opacity: 0.95;
+        }
+
+        h2 {
             font-size: 2rem;
+            color: #00E5FF;
             margin-bottom: 1rem;
         }
 
-        h3 {
-            margin-top: 1rem;
-            font-size: 1.5rem;
-        }
-
-        p {
+        p,
+        ul li {
+            color: #d0d0d0;
             margin-bottom: 1rem;
         }
 
-        /* Certifications Section */
-        .certification {
-            margin-bottom: 2rem;
-        }
-
-        .certification .btn {
-            background-color: #333;
-            color: #fff;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .certification .btn:hover {
-            background-color: #555;
-        }
-
-        /* Project Section */
-        .project {
-            margin-bottom: 2rem;
-        }
-
-        .project h3 {
-            font-size: 1.8rem;
-        }
-
-        .project-assets ul {
-            list-style-type: none;
+        ul {
+            list-style: none;
             padding-left: 0;
         }
 
-        .project-assets ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .project-assets ul li a {
-            color: #333;
-            text-decoration: none;
-            padding: 0.5rem;
-            border: 1px solid #333;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 0.5rem;
-        }
-
-        .project-assets ul li a:hover {
-            background-color: #f4f4f4;
-        }
-
-        /* Footer */
         footer {
-            background: #333;
-            color: #fff;
-            padding: 1rem 0;
             text-align: center;
+            padding: 1.5rem;
+            background: #1f1f1f;
+            border-radius: 10px;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         .contact-links a {
-            color: #fff;
-            font-size: 1.5rem;
-            margin: 0.5rem;
+            margin: 0 1rem;
             text-decoration: none;
+            font-size: 1.5rem;
+            color: #00E5FF;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .contact-links a:hover {
-            color: #f4f4f4;
+            color: #ffffff;
+            transform: scale(1.2);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.2rem;
+            margin: 1rem auto;
+            background: #00E5FF;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #1f1f1f;
+            color: #00E5FF;
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body>
 
+<body>
     <!-- Header Section -->
     <header>
-        <h1>Shanmugasundaram P</h1>
-        <p>Have a look at my Portfolio!</p>
-
+        <div>
+            <h1>Shanmugasundaram P</h1>
+            <p>Have a look at my Portfolio!</p>
+            <!-- Header Buttons -->
+            <div class="header-buttons">
+                <a href="#about">About</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
         <!-- Profile Picture -->
         <div class="profile-pic">
             <img src="https://raw.githubusercontent.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/refs/heads/main/pdf/profile.jpg" alt="Profile Picture">
-        </div>	
-
-        <!-- Header Buttons -->
-        <div class="header-buttons">
-            <a href="#about">About</a>
-            <a href="#certifications">Certifications</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
         </div>
-
         <!-- Contact Info -->
         <div class="contact-info">
             <a href="tel:+916369321504">+91 6369321504</a>
@@ -247,7 +262,7 @@
             <p><strong>Date:</strong> Aug - Sept 2023</p>
             <p>This internship at Indian Bank Zonal Office in Puducherry focused on learning the bank's operations, including following up on KCC fishery loans, updating bank records, and using “Bancs” CBS software to query account details. I also voluntarily worked on conducting an SLBC meeting and gained deep insights into banking operations.</p>
             <p>
-                <a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/Internship%20Certificate.jpg" target="_blank" class="btn">View Certificate</a></li> <!-- Replace the link with your image link -->
+                <a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/Internship%20Certificate.jpg" target="_blank" class="btn">View Certificate</a>
             </p>
         </div>
 
@@ -256,7 +271,7 @@
             <p><strong>Date:</strong> Dec 2023</p>
             <p>In this course, I learned how to use advanced Excel features like lookups, data cleansing techniques, index-match functions, and "What-If" analysis tools. Additionally, I gained expertise in data validation, pivot tables, and Power Query to automate and enhance data analysis tasks.</p>
             <p>
-                <a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/excel%20certificate.jpg" target="_blank" class="btn">View Certificate</a></li> <!-- Replace the link with your image link -->
+                <a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/excel%20certificate.jpg" target="_blank" class="btn">View Certificate</a>
             </p>
         </div>
 
@@ -264,11 +279,11 @@
             <h3>SQL Certificate</h3>
             <p><strong>Date:</strong> Dec 2024</p>
             <p>In this course, I gained hands-on experience in SQL, including creating and updating tables, writing queries using joins, subqueries, and other advanced functions to retrieve data efficiently. This knowledge helped me understand how to manage and analyze large datasets using SQL.</p>
-            <p><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/SQL%20certificate.jpg" target="_blank" class="btn">View Certificate</a></li> <!-- Replace the link with your image link --></p>
- 
+            <p>
+                <a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/SQL%20certificate.jpg" target="_blank" class="btn">View Certificate</a>
+            </p>
         </div>
     </section>
-
 
     <!-- Projects Section -->
     <section id="projects">
@@ -285,8 +300,8 @@
             </ul>
             <div class="project-assets">
                 <ul>
-                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/internship%20project.pdf" target="_blank">Project Report (PDF)</a></li> <!-- Replace with project PDF link -->
-                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Intrnship%20project%20output.jpg" target="_blank">Analysis Output</a></li> <!-- Replace with GitHub project link -->
+                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/internship%20project.pdf" target="_blank" class="btn">Project Report (PDF)</a></li>
+                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Intrnship%20project%20output.jpg" target="_blank" class="btn">Analysis Output</a></li>
                 </ul>
             </div>
         </div>
@@ -303,23 +318,21 @@
             </ul>
             <div class="project-assets">
                 <ul>
-                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/2212034%20FINAL%20PROJECT.pdf">Project Report (PDF)</a></li> <!-- Replace with project PDF link -->
-                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Final%20project%20output.jpg" target="_blank">Analysis Output</a></li> <!-- Replace with GitHub project link -->
+                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/2212034%20FINAL%20PROJECT.pdf" target="_blank" class="btn">Project Report (PDF)</a></li>
+                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Final%20project%20output.jpg" target="_blank" class="btn">Analysis Output</a></li>
                 </ul>
             </div>
         </div>
     </section>
 
-
     <!-- Resume Section -->
     <section id="resume">
-    <h2>My Resume</h2>
-    <p>Click the button below to view:</p>
-    <button class="btn" onclick="window.open('https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/pdf/Shanmugasundaram_Resume.pdf', '_blank')">
-        My Resume
-    </button>
-</section>
-
+        <h2>My Resume</h2>
+        <p>Click the button below to view:</p>
+        <button class="btn" onclick="window.open('https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/pdf/Shanmugasundaram_Resume.pdf', '_blank')">
+            My Resume
+        </button>
+    </section>
 
     <!-- Contact Section -->
     <section id="contact">
@@ -337,8 +350,39 @@
             <a href="https://www.hackerrank.com/profile/shanmugasundar50" target="_blank" class="fab fa-hackerrank"></a>
             <a href="https://github.com/Shanmugasundaram-P" target="_blank"><i class="fab fa-github"></i></a>
         </div>
-<p>&copy; 2024 Shanmugasundaram P | All rights reserved</p>
+        <p>&copy; 2024 Shanmugasundaram P | All rights reserved</p>
     </footer>
+<script>
+        document.querySelectorAll('header .header-buttons a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                const startPosition = window.scrollY;
+                const distance = targetPosition - startPosition;
+                const duration = 800; // Duration in milliseconds
+                let startTime = null;
 
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const progress = Math.min(timeElapsed / duration, 1); // Ensure progress is between 0 and 1
+                    const ease = easeInOutQuad(progress); // Easing function
+
+                    window.scrollTo(0, startPosition + distance * ease);
+
+                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                }
+
+                function easeInOutQuad(t) {
+                    return t < 0.5 ? 2 * t * t : -1 + (4 * t) - (2 * t * t);
+                }
+
+                requestAnimationFrame(animation);
+            });
+        });
+    </script>
 </body>
+
 </html>

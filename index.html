@@ -5,215 +5,416 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shanmugasundaram P - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Reset */
-        * {
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            background-color: #121212;
+            background-color: #0d1117;
             color: #e0e0e0;
-            padding: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            scroll-behavior: smooth; /* Smooth scrolling */
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        header {
+        /* Container for centered layout */
+        .container {
+            width: 80%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* Particles.js Canvas */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0d1117;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #1f1f1f, #323232);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #64b5f6;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header Styles */
+        header {
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            padding: 50px 0;
             position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+            margin-bottom: 40px;
         }
 
         header h1 {
-            font-size: 2.8rem;
-            color: #00E5FF;
-            margin-bottom: 0.5rem;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: fadeInTitle 1s forwards ease-out;
-        }
-
-        @keyframes fadeInTitle {
-            0% {
-                transform: translateX(-50px);
-                opacity: 0;
-            }
-
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            margin: 0;
+            font-size: 3.2em;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
 
         header p {
-            font-size: 1.2rem;
-            color: #a0a0a0;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: fadeInTitle 1.2s forwards ease-out;
-        }
-
-        .profile-pic {
-            width: 190px;
-            height: 190px;
-            border-radius: 50%;
-            margin: -30px 1.5rem 1.5rem; /* Adjusted to move the picture upward */
-            overflow: hidden;
-            border: 3px solid #00E5FF;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
-            animation: moveRight 1.5s forwards ease-out;
-            position: relative;
-        }
-
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @keyframes moveRight {
-            0% {
-                transform: translateX(100px);
-                opacity: 0;
-            }
-
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            font-size: 1.6em;
+            font-style: italic;
+            margin-bottom: 40px;
+            color: #ccc;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
         }
 
         .header-buttons a {
             display: inline-block;
+            padding: 16px 32px;
+            margin: 0 20px;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #fff;
             text-decoration: none;
-            padding: 0.7rem 1.2rem;
-            margin: 0.5rem;
-            background: #333;
-            color: #00E5FF;
-            border: 1px solid #00E5FF;
-            border-radius: 5px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
-            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            font-size: 1em;
         }
 
         .header-buttons a:hover {
-            background: #00E5FF;
-            color: #121212;
-            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
         }
 
         .contact-info {
-            position: absolute;
-            bottom: 1rem;
-            right: 2rem;
-            color: #e0e0e0;
+            margin-top: 40px;
         }
 
         .contact-info a {
-            color: #e0e0e0;
+            color: #fff;
             text-decoration: none;
-            display: block;
-            margin: 0.3rem;
+            margin: 0 20px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
         }
 
         .contact-info a:hover {
-            color: #00E5FF;
+            color: #aaa;
         }
 
+        /* Section Styles */
         section {
-            background: #1f1f1f;
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            width: 100%;
+            max-width: 1500px;
+            padding: 70px 40px;
+            background-color: rgba(255, 255, 255, 0.02);
+            margin-bottom: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        section.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         section:hover {
-            transform: translateY(-10px);
-            opacity: 0.95;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
         }
 
-        h2 {
-            font-size: 2rem;
-            color: #00E5FF;
-            margin-bottom: 1rem;
+        section:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.1);
         }
 
-        p,
-        ul li {
-            color: #d0d0d0;
-            margin-bottom: 1rem;
+        section h2 {
+            font-size: 2.8em;
+            margin-bottom: 40px;
+            color: #64b5f6;
+            text-align: left;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            border-bottom: 2px solid #64b5f6;
+            padding-bottom: 18px;
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        ul {
+        /* Content within sections */
+        section p,
+        section ul,
+        section h3,
+        section h4 {
+            font-size: 1.2em;
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        #about h3 {
+            color: #64b5f6;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            font-size: 2em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        #about ul {
             list-style: none;
-            padding-left: 0;
+            padding: 0;
+            margin-top: 30px;
         }
 
-        footer {
+        #about li {
+            margin-bottom: 14px;
+            padding-left: 1.6em;
+            text-indent: -1.6em;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        #about li:hover {
+            color: #64b5f6;
+        }
+
+        #about li::before {
+            content: "\f00d";
+            font-family: FontAwesome;
+            color: #64b5f6;
+            display: inline-block;
+            width: 1.6em;
+            margin-left: -1.6em;
+        }
+
+        #about h4 {
+            color: #64b5f6;
+            margin-top: 40px;
+            font-size: 1.6em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Certifications Section */
+        .certification {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .certification:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        .certification h3 {
+            color: #64b5f6;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0,0, 0.7);
+        }
+
+        .certification p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        /* Projects Section */
+        .project {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .project:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        .project h3 {
+            color: #64b5f6;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .project ul {
+            list-style: disc;
+            margin-left: 40px;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .project-assets ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            justify-content: left;
+        }
+
+        /* Resume Section */
+        #resume {
             text-align: center;
-            padding: 1.5rem;
-            background: #1f1f1f;
-            border-radius: 10px;
-            margin-top: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
-        .contact-links a {
-            margin: 0 1rem;
-            text-decoration: none;
-            font-size: 1.5rem;
-            color: #00E5FF;
-            transition: color 0.3s ease, transform 0.3s ease;
+        /* Contact Section */
+        #contact {
+            text-align: center;
         }
 
-        .contact-links a:hover {
-            color: #ffffff;
-            transform: scale(1.2);
-        }
-
+        /* Button Styles */
         .btn {
             display: inline-block;
-            padding: 0.7rem 1.2rem;
-            margin: 1rem auto;
-            background: #00E5FF;
-            color: #121212;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
-            cursor: pointer;
+            padding: 18px 36px;
+            background-color: #64b5f6;
+            color: #0d1117;
+            text-decoration: none;
+            border-radius: 10px;
             font-weight: bold;
-            transition: background 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            font-size: 1.1em;
         }
 
         .btn:hover {
-            background: #1f1f1f;
-            color: #00E5FF;
-            transform: scale(1.05);
+            background-color: #549ad8;
+            transform: translateY(-4px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Footer Styles */
+        footer {
+            width: 100%;
+            background-color: #080b10;
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Contact Links */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .contact-links a {
+            color: #64b5f6;
+            font-size: 1.7em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+
+        .contact-links a:hover {
+            color: #549ad8;
+            transform: scale(1.2) rotate(360deg);
+            /* Glow Effect */
+            text-shadow: 0 0 10px #549ad8;
+        }
+
+        /* Button Glow Effect */
+        .btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn:hover::before {
+            opacity: 1; /* Add subtle glow */
         }
     </style>
 </head>
 
 <body>
-    <!-- Header Section -->
-    <header>
-        <div>
+
+    <!-- Particles.js -->
+    <div id="particles-js"></div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Content Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header>
             <h1>Shanmugasundaram P</h1>
-            <p>Have a look at my Portfolio!</p>
+            <p>FinTech Analyst | Data Enthusiast | Power BI Expert</p>
             <!-- Header Buttons -->
             <div class="header-buttons">
                 <a href="#about">About</a>
@@ -221,153 +422,301 @@
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
             </div>
-        </div>
-        <!-- Profile Picture -->
-        <div class="profile-pic">
-            <img src="https://raw.githubusercontent.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/refs/heads/main/pdf/profile.jpg" alt="Profile Picture">
-        </div>
-        <!-- Contact Info -->
-        <div class="contact-info">
-            <a href="tel:+916369321504">+91 6369321504</a>
-            <a href="mailto:shanmugasundaram.bs013@gmail.com">shanmugasundaram.bs013@gmail.com</a>
-        </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I am Shanmugasundaram, a recent MBA FinTech graduate with a strong foundation in core finance and management skills. I am proficient in various data analysis tools like SQL, Power BI, Advanced Excel, and Python basics.</p>
-
-        <h3>Skills</h3>
-        <ul>
-            <li>Finance (Financial Statement Analysis, Financial Modeling)</li>
-            <li>Project Management</li>
-            <li>Data Analysis (SQL, Power BI, Advanced Excel)</li>
-            <li>Programming (Python Basics)</li>
-            <li>Management Skills</li>
-        </ul>
-
-        <h3>Work Experience</h3>
-        <h4>Internship at Indian Bank Zonal Office</h4>
-        <p>During my one-month internship at the Indian Bank Zonal Office in Puducherry, I worked with various teams, following up on KCC fishery loans and learning how the banking sector operates with “Bancs” CBS software to query bank account details, jewel loan auction reports, follow up for KYC renewal and voluntarily worked in conducting SLBC meeting.</p>
-    </section>
-
-    <!-- Certifications Section -->
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <p>Here are some of the certifications I have completed:</p>
-
-        <div class="certification">
-            <h3>Indian Bank Internship Certificate</h3>
-            <p><strong>Date:</strong> Aug - Sept 2023</p>
-            <p>This internship at Indian Bank Zonal Office in Puducherry focused on learning the bank's operations, including following up on KCC fishery loans, updating bank records, and using “Bancs” CBS software to query account details. I also voluntarily worked on conducting an SLBC meeting and gained deep insights into banking operations.</p>
-            <p>
-                <a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/Internship%20Certificate.jpg" target="_blank" class="btn">View Certificate</a>
-            </p>
-        </div>
-
-        <div class="certification">
-            <h3>Advanced Excel Certificate</h3>
-            <p><strong>Date:</strong> Dec 2023</p>
-            <p>In this course, I learned how to use advanced Excel features like lookups, data cleansing techniques, index-match functions, and "What-If" analysis tools. Additionally, I gained expertise in data validation, pivot tables, and Power Query to automate and enhance data analysis tasks.</p>
-            <p>
-                <a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/excel%20certificate.jpg" target="_blank" class="btn">View Certificate</a>
-            </p>
-        </div>
-
-        <div class="certification">
-            <h3>SQL Certificate</h3>
-            <p><strong>Date:</strong> Dec 2024</p>
-            <p>In this course, I gained hands-on experience in SQL, including creating and updating tables, writing queries using joins, subqueries, and other advanced functions to retrieve data efficiently. This knowledge helped me understand how to manage and analyze large datasets using SQL.</p>
-            <p>
-                <a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/SQL%20certificate.jpg" target="_blank" class="btn">View Certificate</a>
-            </p>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>My Projects</h2>
-        <p>Here's a showcase of some of my recent work:</p>
-
-        <!-- Project 1 -->
-        <div class="project">
-            <h3>Impact of LEAD BANK in Financial Inclusion - Indian Bank</h3>
-            <p>Done internship in LEAD BANK, Indian bank, Zonal office, Puducherry for a month. In the meantime, did a project on "impact of lead bank in financial inclusion" with an objective to elaborate the exact impact made in financial inclusion at Puducherry by lead bank using:</p>
-            <ul>
-                <li>The target and achievement data for loans comparing previous years</li>
-                <li>Other measures taken by the lead bank to promote financial inclusive services to the public</li>
-            </ul>
-            <div class="project-assets">
-                <ul>
-                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/internship%20project.pdf" target="_blank" class="btn">Project Report (PDF)</a></li>
-                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Intrnship%20project%20output.jpg" target="_blank" class="btn">Analysis Output</a></li>
-                </ul>
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <a href="tel:+916369321504">+91 6369321504</a>
+                <a href="mailto:shanmugasundaram.bs013@gmail.com">shanmugasundaram.bs013@gmail.com</a>
             </div>
-        </div>
+        </header>
 
-        <!-- Project 2 -->
-        <div class="project">
-            <h3>Decentralized Chit Funds: A Sidechain Approach for Scalability</h3>
-            <p>This project elaborates “How Sidechain Technology can be included in the Blockchain based chitfund system in order to make faster transactions and data storage at minimum cost” with architectural prototype and sequence diagrams.</p>
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I am Shanmugasundaram, a recent MBA FinTech graduate with a strong foundation in core finance and
+                management skills. I am proficient in various data analysis tools like SQL, Power BI, Advanced Excel,
+                and Python basics.</p>
+
+            <h3>Skills</h3>
             <ul>
-                <li>Impacts of Sidechain Technology</li>
-                <li>Alternatives available for Sidechain Technology</li>
-                <li>Why Sidechain Technology is the best alternative</li>
-                <li>Platforms that can effectively work with Sidechain Technology</li>
+                <p>Finance (Financial Statement Analysis, Financial Modeling)</p>
+                <p>Project Management</p>
+                <p>Data Analysis (SQL, Power BI, Advanced Excel)</p>
+                <p>Programming (Python Basics)</p>
+                <p>Management Skills</p>
             </ul>
-            <div class="project-assets">
-                <ul>
-                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/2212034%20FINAL%20PROJECT.pdf" target="_blank" class="btn">Project Report (PDF)</a></li>
-                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Final%20project%20output.jpg" target="_blank" class="btn">Analysis Output</a></li>
-                </ul>
+
+            <h3>Work Experience</h3>
+            <h4>Internship at Indian Bank Zonal Office</h4>
+            <p>During my one-month internship at the Indian Bank Zonal Office in Puducherry, I worked with various
+                teams, following up on KCC fishery loans and learning how the banking sector operates with “Bancs” CBS
+                software to query bank account details, jewel loan auction reports, follow up for KYC renewal and
+                voluntarily worked in conducting SLBC meeting.</p>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <h2>Certifications</h2>
+            <p>Here are some of the certifications I have completed:</p>
+
+            <div class="certification">
+                <h3>Indian Bank Internship Certificate</h3>
+                <p><strong>Date:</strong> Aug - Sept 2023</p>
+                <p>This internship at Indian Bank Zonal Office in Puducherry focused on learning the bank's operations,
+                    including following up on KCC fishery loans, updating bank records, and using “Bancs” CBS software
+                    to query account details. I also voluntarily worked on conducting an SLBC meeting and gained deep
+                    insights into banking operations.</p>
+                <p>
+                    <a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/Internship%20Certificate.jpg"
+                        target="_blank" class="btn">View Certificate</a>
+                </p>
             </div>
-        </div>
-<!-- Project 3 -->
-        <div class="project">
-            <h3>Global Layoff Trends Dashboard (2020–2024) Using Excel</h3>
-            <p>Designed an interactive Excel dashboard analyzing global workforce trends, highlighting layoff patterns, regional impacts, and department-wise insights using real-time data from Layoffs.fyi.</p>
-            <ul>
-                <li>Performed ETL functions and demonstrated advanced data visualization, filtering, and storytelling techniques to derive actionable insights for workforce strategies.</li>
-                
-            </ul>
-            <div class="project-assets">
-                <ul>
-                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Layoffs%20data%202020%20-%2024.xlsx" target="_blank" class="btn">Project Report (PDF)</a></li>
-                    <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Excel%20project%20output.jpg" target="_blank" class="btn">Analysis Output</a></li>
-                </ul>
+
+            <div class="certification">
+                <h3>Advanced Excel Certificate</h3>
+                <p><strong>Date:</strong> Dec 2023</p>
+                <p>In this course, I learned how to use advanced Excel features like lookups, data cleansing techniques,
+                    index-match functions, and "What-If" analysis tools. Additionally, I gained expertise in data
+                    validation, pivot tables, and Power Query to automate and enhance data analysis tasks.</p>
+                <p>
+                    <a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/excel%20certificate.jpg"
+                        target="_blank" class="btn">View Certificate</a>
+                </p>
             </div>
-        </div>
 
-    </section>
+            <div class="certification">
+                <h3>SQL Certificate</h3>
+                <p><strong>Date:</strong> Dec 2024</p>
+                <p>In this course, I gained hands-on experience in SQL, including creating and updating tables, writing
+                    queries using joins, subqueries, and other advanced functions to retrieve data efficiently. This
+                    knowledge helped me understand how to manage and analyze large datasets using SQL.</p>
+                <p>
+                    <a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/certifications/SQL%20certificate.jpg"
+                        target="_blank" class="btn">View Certificate</a>
+            </div>
+        </section>
 
-    <!-- Resume Section -->
-    <section id="resume">
-        <h2>My Resume</h2>
-        <p>Click the button below to view:</p>
-        <button class="btn" onclick="window.open('https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/pdf/Shanmugasundaram_Resume.pdf', '_blank')">
-            My Resume
-        </button>
-    </section>
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>My Projects</h2>
+            <p>Here's a showcase of some of my recent work:</p>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Feel free to get in touch using the link icons below:</p>
-    </section>
+            <!-- Project 1 -->
+            <div class="project">
+                <h3>Impact of LEAD BANK in Financial Inclusion - Indian Bank</h3>
+                <p>Done internship in LEAD BANK, Indian bank, Zonal office, Puducherry for a month. In the meantime,
+                    did a project on "impact of lead bank in financial inclusion" with an objective to elaborate the
+                    exact impact made in financial inclusion at Puducherry by lead bank using:</p>
+                <ul>
+                    <li>The target and achievement data for loans comparing previous years</li>
+                    <li>Other measures taken by the lead bank to promote financial inclusive services to the public</li>
+                </ul>
+                <div class="project-assets">
+                    <ul>
+                        <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/internship%20project.pdf"
+                                target="_blank" class="btn">Project Report (PDF)</a></li>
+                        <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Intrnship%20project%20output.jpg"
+                                target="_blank" class="btn">Analysis Output</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project">
+                <h3>Decentralized Chit Funds: A Sidechain Approach for Scalability</h3>
+                <p>This project elaborates “How Sidechain Technology can be included in the Blockchain based chitfund
+                    system in order to make faster transactions and data storage at minimum cost” with architectural
+                    prototype and sequence diagrams.</p>
+                <ul>
+                    <li>Impacts of Sidechain Technology</li>
+                    <li>Alternatives available for Sidechain Technology</li>
+                    <li>Why Sidechain Technology is the best alternative</li>
+                    <li>Platforms that can effectively work with Sidechain Technology</li>
+                </ul>
+                <div class="project-assets">
+                    <ul>
+                        <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/2212034%20FINAL%20PROJECT.pdf"
+                                target="_blank" class="btn">Project Report (PDF)</a></li>
+                        <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Final%20project%20output.jpg"
+                                target="_blank" class="btn">Analysis Output</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="project">
+                <h3>Global Layoff Trends Dashboard (2020–2024) Using Excel</h3>
+                <p>Designed an interactive Excel dashboard analyzing global workforce trends, highlighting layoff
+                    patterns, regional impacts, and department-wise insights using real-time data from Layoffs.fyi.</p>
+                <ul>
+                    <li>Performed ETL functions and demonstrated advanced data visualization, filtering, and
+                        storytelling techniques to derive actionable insights for workforce strategies.</li>
+
+                </ul>
+                <div class="project-assets">
+                    <ul>
+                        <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Layoffs%20data%202020%20-%2024.xlsx"
+                                target="_blank" class="btn">Project Report (PDF)</a></li>
+                        <li><a href="https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/Projects/Excel%20project%20output.jpg"
+                                target="_blank" class="btn">Analysis Output</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume">
+            <h2>My Resume</h2>
+            <p>Click the button below to view:</p>
+            <button class="btn"
+                onclick="window.open('https://github.com/Shanmugasundaram-P/Shanmugasundaram_Portfolio/blob/main/pdf/Shanmugasundaram_Resume.pdf', '_blank')">
+                My Resume
+            </button>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>Feel free to get in touch using the link icons below:</p>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer>
         <p>Connect with me:</p>
         <div class="contact-links">
-            <a href="tel:+916369321504" target="_blank" class="fas fa-phone"></a>
-            <a href="mailto:shanmugasundaram.bs013@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="http://www.linkedin.com/in/shanmuga-sundaram-p" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.hackerrank.com/profile/shanmugasundar50" target="_blank" class="fab fa-hackerrank"></a>
-            <a href="https://github.com/Shanmugasundaram-P" target="_blank"><i class="fab fa-github"></i></a>
-        </div>
-        <p>&copy; 2024 Shanmugasundaram P | All rights reserved</p>
+   <a href="tel:+916369321504" target="_blank" class="icon-link"><i class="fas fa-phone"></i></a>
+    <a href="mailto:shanmugasundaram.bs013@gmail.com" class="icon-link"><i class="fas fa-envelope"></i></a>
+    <a href="http://www.linkedin.com/in/shanmuga-sundaram-p" target="_blank" class="icon-link"><i class="fab fa-linkedin"></i></a>
+    <a href="https://www.hackerrank.com/profile/shanmugasundar50" target="_blank" class="icon-link"><i class="fab fa-hackerrank"></i></a>
+    <a href="https://github.com/Shanmugasundaram-P" target="_blank" class="icon-link"><i class="fab fa-github"></i></a>
+</div>
+
+        <p>© 2024 Shanmugasundaram P | All rights reserved</p>
     </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+        // Particles Configuration
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 70,
+                    "density": {
+                        "enable": true,
+                        "value_area": 700
+                    }
+                },
+                "color": {
+                    "value": "#64b5f6"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                },
+                "opacity": {
+                    "value": 0.6,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 4,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 140,
+                    "color": "#64b5f6",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 5,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 130,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Preloader
+        document.addEventListener('DOMContentLoaded', function () {
+            const preloader = document.getElementById('preloader');
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 2000);
+        });
+
+        // Section Animations on Scroll
+        const sections = document.querySelectorAll('section');
+
+        function revealSection() {
+            sections.forEach(section => {
+                const top = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                const revealPoint = 80;
+
+                if (top < windowHeight - revealPoint) {
+                    section.classList.add('active');
+                } else {
+                    sections.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealSection);
+    </script>
 <script>
         document.querySelectorAll('header .header-buttons a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -399,6 +748,25 @@
             });
         });
     </script>
+        <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    const contactLinks = document.querySelectorAll('.contact-links a');
+
+    contactLinks.forEach(link => {
+      link.addEventListener('mouseover', function() {
+        this.style.transition = "all 0.3s ease-in-out, transform 0.5s ease-in-out";
+        this.style.transform = "scale(1.2) rotate(360deg)";
+        this.style.textShadow = "0 0 10px #64b5f6"; /* Glow Effect */
+      });
+
+      link.addEventListener('mouseout', function() {
+        this.style.transition = "all 0.3s ease-in-out, transform 0.5s ease-in-out";
+        this.style.transform = "scale(1) rotate(0deg)";
+        this.style.textShadow = "1px 1px 2px rgba(0, 0, 0, 0.7)"; /* Restore Shadow */
+      });
+    });
+  });
+</script>
 </body>
 
 </html>
